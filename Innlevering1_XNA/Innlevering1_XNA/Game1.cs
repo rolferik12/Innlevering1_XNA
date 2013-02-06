@@ -18,6 +18,7 @@ namespace Innlevering1_XNA
     {
 
         GraphicsDeviceManager graphics;
+        
         SpriteBatch spriteBatch;
 
         //defines the array names and array lenght.
@@ -54,14 +55,19 @@ namespace Innlevering1_XNA
         float size;
         float xcord;
 
+
       
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
         }
+
+        
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -192,10 +198,10 @@ namespace Innlevering1_XNA
         void arrayData()
         {
             //Sets the Y coordinates for the base vector2's.
-            stoneBase.Y = (float)Window.ClientBounds.Height - (float)stoneBlock.Height;
-            wallBase.Y = stoneBase.Y - stoneBase.Y / 2.35f;
-            roofSouthBase.Y = wallBase.Y - wallBase.Y / 5 * 2.82f;
-            roofMiddleBase.Y = roofSouthBase.Y - roofSouthBase.Y * 3.5f;
+            stoneBase.Y = (float)Window.ClientBounds.Height - (float)stoneBlock.Height / 0.89f;
+            wallBase.Y = (float)Window.ClientBounds.Height - (float)wallBlock.Height * 1.88f;
+            roofSouthBase.Y = (float)Window.ClientBounds.Height - (float)roofSouth.Height * 2.45f;
+            roofMiddleBase.Y = (float)Window.ClientBounds.Height - (float)brownBlock.Height * 3f;
 
             for (int coords = 0; coords < _arrayLenght; coords++)
             {
@@ -209,7 +215,7 @@ namespace Innlevering1_XNA
 
                 if (wallArray[coords] == wallArray[5])
                 {
-                    wallArray[5].Y = stoneBlock.Height / 0.85f;
+                    wallArray[5].Y = wallBase.Y * 1.09f;
                 }
 
                 //sets the coordinates for the vector2 roofSouth array.
