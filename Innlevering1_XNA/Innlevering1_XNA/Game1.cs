@@ -28,12 +28,14 @@ namespace Innlevering1_XNA
         Vector2[] wallArray;
         Vector2[] roofSouthArray;
         Vector2[] roofMiddleArray;
+        Vector2[] roofNorthArray;
 
         //The "base" used to define the arrays. 
         Vector2 wallBase;
         Vector2 stoneBase;
         Vector2 roofSouthBase;
         Vector2 roofMiddleBase;
+        Vector2 roofNorthBase;
 
 
         //Texture vairables to load pictures
@@ -50,6 +52,10 @@ namespace Innlevering1_XNA
         Texture2D roofWest;
         Texture2D brownBlock;
         Texture2D roofEast;
+        Texture2D roofNorth;
+
+        Texture2D roofNorthWest;
+        Texture2D roofNorthEast;
 
         //Sets the variable for the scale size.
         float size;
@@ -83,6 +89,7 @@ namespace Innlevering1_XNA
             roofSouthArray = new Vector2[_arrayLenght];
             wallArray = new Vector2[_arrayLenght];
             roofMiddleArray = new Vector2[_arrayLenght];
+            roofNorthArray = new Vector2[_arrayLenght];
 
             
             //Defines how many pixels the width is.
@@ -150,41 +157,72 @@ namespace Innlevering1_XNA
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
 
-            for (int drawPicture = 0; drawPicture < _arrayLenght; drawPicture++)
+            for (int arrayNumberCount = 0; arrayNumberCount < _arrayLenght; arrayNumberCount++)
             {
 
                 //Draws the stone patio
-                spriteBatch.Draw(stoneBlock, stoneArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 1);
+                drawPictures(stoneBlock, stoneArray[arrayNumberCount], 1);
+
 
                 //Draws the wall
-                if (wallArray[drawPicture] == wallArray[5])
+                if (wallArray[arrayNumberCount] == wallArray[5])
                 {
-                    spriteBatch.Draw(doorClosed, wallArray[5], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.5f);
+                    drawPictures(doorClosed, wallArray[5], 0.5f);
                 }
                 else
-                    spriteBatch.Draw(wallBlock, wallArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.4f);
+                    drawPictures(wallBlock, wallArray[arrayNumberCount], 0.4f);
 
 
                 //Draws the south roof
-                if (roofSouthArray[drawPicture] == roofSouthArray[0])
+                if (roofSouthArray[arrayNumberCount] == roofSouthArray[0])
                 {
-                    spriteBatch.Draw(roofSoutWest, roofSouthArray[0], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
+                    drawPictures(roofSoutWest, roofSouthArray[0], 0.2f);
                 }
-                else if (roofSouthArray[drawPicture] == roofSouthArray[6])
+                else if (roofSouthArray[arrayNumberCount] == roofSouthArray[6])
                 {
-                    spriteBatch.Draw(roofSouthEast, roofSouthArray[6], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
+                    drawPictures(roofSouthEast, roofSouthArray[6], 0.2f);
                 }
-                else if (roofSouthArray[drawPicture] == roofSouthArray[5])
+                else if (roofSouthArray[arrayNumberCount] == roofSouthArray[5])
                 {
-                    spriteBatch.Draw(windowTall, roofSouthArray[5], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
+                    drawPictures(windowTall, roofSouthArray[5], 0.2f);
                 }
                 else
                 {
-                    spriteBatch.Draw(roofSouth, roofSouthArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
+                    drawPictures(roofSouth, roofSouthArray[arrayNumberCount], 0.2f);
                 }
 
+
                 //Draws the middle roof
-                spriteBatch.Draw(brownBlock, roofMiddleArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.4f);
+                if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[0])
+                {
+                    drawPictures(roofWest, roofMiddleArray[0], 0.4f);
+                }
+                else if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[5])
+                {
+                    drawPictures(roofNorth, roofMiddleArray[5], 0.4f);
+                }
+                else if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[6])
+                {
+                    drawPictures(roofEast, roofMiddleArray[6], 0.4f);
+                }
+                else
+                {
+                    drawPictures(brownBlock, roofMiddleArray[arrayNumberCount], 0.4f);
+                }
+
+                //Draws the north roof
+                if (roofNorthArray[arrayNumberCount] == roofNorthArray[0])
+                {
+                    drawPictures(roofNorthWest, roofNorthArray[0], 0.5f);
+                }
+                else if (roofNorthArray[arrayNumberCount] == roofNorthArray[6])
+                {
+                    drawPictures(roofNorthEast, roofNorthArray[6], 0.5f);
+                }
+                else
+                {
+                    drawPictures(roofNorth, roofNorthArray[arrayNumberCount], 0.5f);
+                }
                 
             }
             spriteBatch.End();
@@ -192,42 +230,7 @@ namespace Innlevering1_XNA
             base.Draw(gameTime);
         }
 
-        /// <summary>
-        /// Sets the array coordinates for all arrays and sets the Y coordinate.
-        /// </summary>
-        void arrayData()
-        {
-            //Sets the Y coordinates for the base vector2's.
-            stoneBase.Y = (float)Window.ClientBounds.Height - (float)stoneBlock.Height / 0.89f;
-            wallBase.Y = (float)Window.ClientBounds.Height - (float)wallBlock.Height * 1.88f;
-            roofSouthBase.Y = (float)Window.ClientBounds.Height - (float)roofSouth.Height * 2.45f;
-            roofMiddleBase.Y = (float)Window.ClientBounds.Height - (float)brownBlock.Height * 3f;
 
-            for (int coords = 0; coords < _arrayLenght; coords++)
-            {
-                //Sets the coordinates for the Vector2 stone array
-                stoneArray[coords] = new Vector2(stoneBase.X, stoneBase.Y);
-                stoneBase.X += xcord;
-
-                //sets the coordinates for the Vector2 wall Array
-                wallArray[coords] = new Vector2(wallBase.X, wallBase.Y);
-                wallBase.X += xcord;
-
-                if (wallArray[coords] == wallArray[5])
-                {
-                    wallArray[5].Y = wallBase.Y * 1.09f;
-                }
-
-                //sets the coordinates for the vector2 roofSouth array.
-                roofSouthArray[coords] = new Vector2(roofSouthBase.X, roofSouthBase.Y);
-                roofSouthBase.X += xcord;
-
-                //sets the coordinates for the vector2 roofmiddle array.
-                roofMiddleArray[coords] = new Vector2(roofMiddleBase.X, roofMiddleBase.Y);
-                roofMiddleBase.X += xcord;
-            }
-
-        }
 
         /// <summary>
         /// Loads the specified pictures
@@ -251,11 +254,78 @@ namespace Innlevering1_XNA
             roofWest = this.Content.Load<Texture2D>("Building/Roof West");
             brownBlock = this.Content.Load<Texture2D>("Building/Brown Block");
             roofEast = this.Content.Load<Texture2D>("Building/Roof East");
+            roofNorth = this.Content.Load<Texture2D>("Building/Roof North");
+
+            //Loads the north roof pictures
+            roofNorthWest = this.Content.Load<Texture2D>("Building/Roof North West");
+            roofNorthEast = this.Content.Load<Texture2D>("Building/Roof North East");
 
             //Sets the scale for the images
             size = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
 
 
+        }
+
+        /// <summary>
+        /// Sets the array coordinates for all arrays and sets the Y coordinate.
+        /// </summary>
+        void arrayData()
+        {
+            //Sets the Y coordinates for the base vector2's.
+            float windowHeight = (float)Window.ClientBounds.Height;
+
+            stoneBase.Y = windowHeight - (float)stoneBlock.Height / 0.89f;
+            wallBase.Y = windowHeight - (float)wallBlock.Height * 1.88f;
+            roofSouthBase.Y = windowHeight - (float)roofSouth.Height * 2.45f;
+            roofMiddleBase.Y = windowHeight - (float)brownBlock.Height * 3f;
+            roofNorthBase.Y = windowHeight - (float)roofNorth.Height * 3.5f;
+
+            for (int coords = 0; coords < _arrayLenght; coords++)
+            {
+                //stoneArray vector2 coordinates
+                stoneArray[coords] = new Vector2(stoneBase.X, stoneBase.Y);
+                stoneBase.X += xcord;
+
+                //wallArray coordinates
+                wallArray[coords] = new Vector2(wallBase.X, wallBase.Y);
+                wallBase.X += xcord;
+
+                if (wallArray[coords] == wallArray[5])
+                {
+                    wallArray[5].Y = wallBase.Y * 1.09f;
+                }
+
+                //roofSouthArray vector2 coordinates.
+                roofSouthArray[coords] = new Vector2(roofSouthBase.X, roofSouthBase.Y);
+                roofSouthBase.X += xcord;
+
+                //roofMiddleArray vector2 coordinates.
+                roofMiddleArray[coords] = new Vector2(roofMiddleBase.X, roofMiddleBase.Y);
+                roofMiddleBase.X += xcord;
+
+                if (roofMiddleArray[coords] == roofMiddleArray[5])
+                {
+                    roofMiddleArray[5].Y = roofMiddleBase.Y * 0.5f;
+                }
+
+                //roofNorthArray vector2 coordinates
+                roofNorthArray[coords] = new Vector2(roofNorthBase.X, roofNorthBase.Y);
+                roofNorthBase.X += xcord;
+
+
+            }
+
+        }
+
+        /// <summary>
+        /// creates a spritebatch draw, drawing the desired picture with the coordinates from the desired array.
+        /// </summary>
+        /// <param name="pictureName">The texture2d name of the content file</param>
+        /// <param name="arrayName">name and optionally the array position where the picture is to be drawn</param>
+        /// <param name="layerDepth">Sets the layer depth of the picture</param>
+        void drawPictures(Texture2D pictureName, Vector2 arrayName, float layerDepth)
+        {
+            spriteBatch.Draw(pictureName, arrayName, null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, layerDepth);
         }
     }
 }
