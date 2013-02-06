@@ -52,11 +52,9 @@ namespace Innlevering1_XNA
 
         //Sets the variable for the scale size.
         float size;
-
         float xcord;
 
-
-
+      
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -80,7 +78,12 @@ namespace Innlevering1_XNA
             wallArray = new Vector2[_arrayLenght];
             roofMiddleArray = new Vector2[_arrayLenght];
 
+            
+            //Defines how many pixels the width is.
+            xcord = (float)(Window.ClientBounds.Width / 7);
+          
             base.Initialize();
+
         }
 
         /// <summary>
@@ -94,38 +97,11 @@ namespace Innlevering1_XNA
 
             // TODO: use this.Content to load your game 
 
-            xcord = (float)(Window.ClientBounds.Width / 7);
-
-            //Loads the stoneblock pictures
-            stoneBlock = this.Content.Load<Texture2D>("Building/Stone Block");
-
-            //Loads the wall and door pictures
-            wallBlock = this.Content.Load<Texture2D>("Building/Wall BLock Tall");
-            doorClosed = this.Content.Load<Texture2D>("Building/Door Tall CLosed");
-
-            //Loads the south roof pictures
-            roofSouth = this.Content.Load<Texture2D>("Building/Roof South");
-            roofSouthEast = this.Content.Load<Texture2D>("Building/Roof South East");
-            roofSoutWest = this.Content.Load<Texture2D>("Building/Roof South West");
-            windowTall = this.Content.Load<Texture2D>("Building/Window Tall");
-
-            //Loads the middle roof pictures
-            roofWest = this.Content.Load<Texture2D>("Building/Roof West");
-            brownBlock = this.Content.Load<Texture2D>("Building/Brown Block");
-            roofEast = this.Content.Load<Texture2D>("Building/Roof East");
-
-
-            //Sets the Y coordinates for the base vector2's.
-            stoneBase.Y = (float)Window.ClientBounds.Height - (float)stoneBlock.Height;
-            wallBase.Y = stoneBase.Y - stoneBase.Y / 2.35f;
-            roofSouthBase.Y = wallBase.Y - wallBase.Y / 5 * 2.82f;
-            roofMiddleBase.Y = roofSouthBase.Y - roofSouthBase.Y;
+            //Loads the picture content
+            loadPictures();
 
             //calls on the array data
             arrayData();
-
-            //Sets the scale
-            size = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
 
         }
 
@@ -165,14 +141,14 @@ namespace Innlevering1_XNA
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
 
             for (int drawPicture = 0; drawPicture < _arrayLenght; drawPicture++)
             {
 
                 //Draws the stone patio
-                spriteBatch.Draw(stoneBlock, stoneArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                spriteBatch.Draw(stoneBlock, stoneArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 1);
 
                 //Draws the wall
                 if (wallArray[drawPicture] == wallArray[5])
@@ -186,23 +162,23 @@ namespace Innlevering1_XNA
                 //Draws the south roof
                 if (roofSouthArray[drawPicture] == roofSouthArray[0])
                 {
-                    spriteBatch.Draw(roofSoutWest, roofSouthArray[0], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                    spriteBatch.Draw(roofSoutWest, roofSouthArray[0], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
                 }
                 else if (roofSouthArray[drawPicture] == roofSouthArray[6])
                 {
-                    spriteBatch.Draw(roofSouthEast, roofSouthArray[6], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                    spriteBatch.Draw(roofSouthEast, roofSouthArray[6], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
                 }
                 else if (roofSouthArray[drawPicture] == roofSouthArray[5])
                 {
-                    spriteBatch.Draw(windowTall, roofSouthArray[5], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                    spriteBatch.Draw(windowTall, roofSouthArray[5], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
                 }
                 else
                 {
-                    spriteBatch.Draw(roofSouth, roofSouthArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                    spriteBatch.Draw(roofSouth, roofSouthArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.2f);
                 }
 
                 //Draws the middle roof
-        //        spriteBatch.Draw(brownBlock, roofMiddleArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0);
+                spriteBatch.Draw(brownBlock, roofMiddleArray[drawPicture], null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, 0.4f);
                 
             }
             spriteBatch.End();
@@ -210,8 +186,17 @@ namespace Innlevering1_XNA
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Sets the array coordinates for all arrays and sets the Y coordinate.
+        /// </summary>
         void arrayData()
         {
+            //Sets the Y coordinates for the base vector2's.
+            stoneBase.Y = (float)Window.ClientBounds.Height - (float)stoneBlock.Height;
+            wallBase.Y = stoneBase.Y - stoneBase.Y / 2.35f;
+            roofSouthBase.Y = wallBase.Y - wallBase.Y / 5 * 2.82f;
+            roofMiddleBase.Y = roofSouthBase.Y - roofSouthBase.Y * 3.5f;
+
             for (int coords = 0; coords < _arrayLenght; coords++)
             {
                 //Sets the coordinates for the Vector2 stone array
@@ -234,9 +219,37 @@ namespace Innlevering1_XNA
                 //sets the coordinates for the vector2 roofmiddle array.
                 roofMiddleArray[coords] = new Vector2(roofMiddleBase.X, roofMiddleBase.Y);
                 roofMiddleBase.X += xcord;
-
             }
+
         }
 
+        /// <summary>
+        /// Loads the specified pictures
+        /// </summary>
+        void loadPictures()
+        {
+            //Loads the stoneblock pictures
+            stoneBlock = this.Content.Load<Texture2D>("Building/Stone Block");
+
+            //Loads the wall and door pictures
+            wallBlock = this.Content.Load<Texture2D>("Building/Wall BLock Tall");
+            doorClosed = this.Content.Load<Texture2D>("Building/Door Tall CLosed");
+
+            //Loads the south roof pictures
+            roofSouth = this.Content.Load<Texture2D>("Building/Roof South");
+            roofSouthEast = this.Content.Load<Texture2D>("Building/Roof South East");
+            roofSoutWest = this.Content.Load<Texture2D>("Building/Roof South West");
+            windowTall = this.Content.Load<Texture2D>("Building/Window Tall");
+
+            //Loads the middle roof pictures
+            roofWest = this.Content.Load<Texture2D>("Building/Roof West");
+            brownBlock = this.Content.Load<Texture2D>("Building/Brown Block");
+            roofEast = this.Content.Load<Texture2D>("Building/Roof East");
+
+            //Sets the scale for the images
+            size = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
+
+
+        }
     }
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innlevering1_XNA", "Innlevering1_XNA\Innlevering1_XNA\Innlevering1_XNA.csproj", "{D4C2266E-B2E9-4197-B83F-FB8B51CAE8F5}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Innlevering1_XNAContent", "Innlevering1_XNA\Innlevering1_XNAContent\Innlevering1_XNAContent.contentproj", "{E311FEBB-CA9E-41AD-985B-134D171B1E42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innlevering1_XNAContent", "Innlevering1_XNA\Innlevering1_XNAContent\Innlevering1_XNAContent.contentproj", "{E311FEBB-CA9E-41AD-985B-134D171B1E42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,6 +16,7 @@ Global
 		{D4C2266E-B2E9-4197-B83F-FB8B51CAE8F5}.Release|x86.ActiveCfg = Release|x86
 		{D4C2266E-B2E9-4197-B83F-FB8B51CAE8F5}.Release|x86.Build.0 = Release|x86
 		{E311FEBB-CA9E-41AD-985B-134D171B1E42}.Debug|x86.ActiveCfg = Debug|x86
+		{E311FEBB-CA9E-41AD-985B-134D171B1E42}.Debug|x86.Build.0 = Debug|x86
 		{E311FEBB-CA9E-41AD-985B-134D171B1E42}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
