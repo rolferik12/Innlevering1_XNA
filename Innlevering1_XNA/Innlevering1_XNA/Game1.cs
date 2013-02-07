@@ -125,12 +125,14 @@ namespace Innlevering1_XNA
 
             worldInteraction.Update();
 
+            //Starts the recoil. If MouseNewDown = true then it will begin.
             if (GameStatus.MouseNewDown)
             {
                 recoil = true;
                 recoilSpeedY = recoilHeight;
             }
 
+            //This is where the recoil is calculated. 
             if (recoil)
             {
                 if (0 >= offsetPos.Y)

@@ -11,7 +11,7 @@ namespace Innlevering1_XNA
     public class Building
     {
 
-        //Texture vairables to load pictures
+        //Texture vairables to building pictures
         Texture2D stoneBlock;
 
         Texture2D wallBlock;
@@ -33,7 +33,7 @@ namespace Innlevering1_XNA
         //Array data for the building grid
         arrayData[] texturePosAndLayerArray;
 
-        //Sets the variable for the scale size.
+        //Sets the variable for the scale size and the x coordinate for the pictures.
         float scale;
         float xcoord;
 
@@ -41,7 +41,9 @@ namespace Innlevering1_XNA
         {
         }
         
-
+        /// <summary>
+        /// Loads the pictures and defines the variables
+        /// </summary>
         public void Load()
         {
 
@@ -75,9 +77,13 @@ namespace Innlevering1_XNA
 
             scale = (float)(GameStatus.windowBorder.X / 7) / (float)stoneBlock.Width;
 
+            //Loads arrayData() which is the array data.
             arrayData();
         }
 
+        /// <summary>
+        /// Draws the data from the texturePosAndLayerArray grid and draws it.
+        /// </summary>
         public void Draw()
         {
             for (int i = 0; i < texturePosAndLayerArray.Length; i++)
@@ -89,6 +95,12 @@ namespace Innlevering1_XNA
             }
         }
 
+        /// <summary>
+        /// Defines the arraydata to later be drawn by the Draw() function.
+        /// 
+        /// When X = 0 and Y = 0 you are in the top left corner of the grid.
+        /// The array has stored the position data accordingly
+        /// </summary>
         void arrayData()
         {
             float windowHeight = (float)GameStatus.windowBorder.Y;
@@ -99,13 +111,13 @@ namespace Innlevering1_XNA
                 {
                     int i = y * 7 + x;
 
-                    //Stone path data
+                //Stone path data
                     if (y == 4)
                     {
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 3.1f, stoneBlock, 1f);
                     }
 
-                    //Wall data
+                //Wall data
                     if (y == 3 && x == 5)
                     {
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 2.02f, doorClosed, 0.5f);
@@ -115,7 +127,7 @@ namespace Innlevering1_XNA
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.84f, wallBlock, 0.5f);
                     }
 
-                    //Roof south data
+                //Roof south data
                     if (y == 2 && x == 0)
                     {
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.43f, roofSouthWest, 0.2f);
@@ -133,7 +145,7 @@ namespace Innlevering1_XNA
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.43f, roofSouth, 0.2f);
                     }
 
-                    //Roof middle data
+                //Roof middle data
                     if (y == 1 && x == 0)
                     {
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.19f, roofWest, 0.4f);
@@ -151,7 +163,7 @@ namespace Innlevering1_XNA
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.19f, brownBlock, 0.4f);
                     }
 
-                    //Roof north data
+                //Roof north data
                     if (y == 0 && x == 0)
                     {
                         texturePosAndLayerArray[i] = new arrayData(xcoord * x, windowHeight - windowHeight / 1.005f, roofNorthWest, 0.5f);
@@ -170,6 +182,9 @@ namespace Innlevering1_XNA
         }
     }
 
+    /// <summary>
+    /// Stores the arrayData
+    /// </summary>
     public class arrayData
     {
         public Vector2 Pos;
