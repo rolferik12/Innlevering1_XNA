@@ -22,23 +22,7 @@ namespace Innlevering1_XNA
         SpriteBatch spriteBatch;
 
         //defines the array names and array lenght.
-        static int _arrayLenght = 7;
-
         arrayData[] texturePosAndLayerArray;
-
-        Vector2[] stoneArray;
-        Vector2[] wallArray;
-        Vector2[] roofSouthArray;
-        Vector2[] roofMiddleArray;
-        Vector2[] roofNorthArray;
-
-        //The "base" used to define the arrays. 
-        Vector2 wallBase;
-        Vector2 stoneBase;
-        Vector2 roofSouthBase;
-        Vector2 roofMiddleBase;
-        Vector2 roofNorthBase;
-
 
         //Texture vairables to load pictures
         Texture2D stoneBlock;
@@ -99,12 +83,6 @@ namespace Innlevering1_XNA
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            stoneArray = new Vector2[_arrayLenght];
-            roofSouthArray = new Vector2[_arrayLenght];
-            wallArray = new Vector2[_arrayLenght];
-            roofMiddleArray = new Vector2[_arrayLenght];
-            roofNorthArray = new Vector2[_arrayLenght];
 
             texturePosAndLayerArray = new arrayData[35];
 
