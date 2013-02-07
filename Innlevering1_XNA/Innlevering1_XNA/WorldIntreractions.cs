@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Innlevering1_XNA
 {
     public class WorldIntreractions
     {
         List<Character> characters = new List<Character>();
-        float characterSpawnTimeMax = 5;
-        float nextSpawn = 5;
+        float characterSpawnTimeMax = 4;
+        float nextSpawn = 2;
         Random rnd = new Random();
 
-        public void Load() { }
+        public void Load() 
+        {
+            CharacterClass.Load();
+        }
         public void Update() 
         {
             nextSpawn -= GameStatus.GameTimeInSec;
@@ -25,6 +28,12 @@ namespace Innlevering1_XNA
             }
             for (int i = 0; i < characters.Count; i++)
             {
+                if (GameStatus.MouseDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
+                {
+                    characters.RemoveAt(i);
+                    i--;
+                    continue;
+                }
                 characters[i].Update();
             }
         }
@@ -34,6 +43,18 @@ namespace Innlevering1_XNA
             {
                 characters[i].Draw();
             }
+        }
+        bool collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2) 
+        {
+            if (Position1.X + Size1.X >= Position2.X &&
+                Position1.X <= Position2.X + Size2.X &&
+                Position1.Y + Size1.Y >= Position2.Y &&
+                Position1.Y <= Position2.Y + Size2.Y)
+            {
+
+                return true;
+            }
+            return false;
         }
     }
 }

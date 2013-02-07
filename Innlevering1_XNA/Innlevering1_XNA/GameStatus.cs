@@ -15,5 +15,6 @@ namespace Innlevering1_XNA
         public static float GameTimeInSec = 0;
         public static Vector2 MousePosition = new Vector2(0, 0);
         public static bool MouseDown = false;
+        public static Point windowBorder;
     }
 }

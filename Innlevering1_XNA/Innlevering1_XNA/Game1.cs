@@ -21,6 +21,8 @@ namespace Innlevering1_XNA
         
         SpriteBatch spriteBatch;
 
+        WorldIntreractions worldInteraction = new WorldIntreractions();
+
         //defines the array names and array lenght.
         arrayData[] texturePosAndLayerArray;
 
@@ -120,6 +122,9 @@ namespace Innlevering1_XNA
             //Sets static variables in gameStatus
             GameStatus.Content = Content;
             GameStatus.SpriteBatch = spriteBatch;
+            GameStatus.windowBorder = new Point(Window.ClientBounds.Width, Window.ClientBounds.Height);
+
+            worldInteraction.Load();
         }
 
 
@@ -152,6 +157,11 @@ namespace Innlevering1_XNA
             mousePosition.X = mouse.X;
             mousePosition.Y = mouse.Y;
 
+            GameStatus.GameTimeInSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            GameStatus.MousePosition = mousePosition;
+            GameStatus.MouseDown = mouse.LeftButton == ButtonState.Pressed;
+
+            worldInteraction.Update();
 
             base.Update(gameTime);
         }
@@ -176,8 +186,8 @@ namespace Innlevering1_XNA
             {
                 if (texturePosAndLayerArray[i] != null) drawPictures(texturePosAndLayerArray[i].Pic, texturePosAndLayerArray[i].Pos, texturePosAndLayerArray[i].Layer);
             }
-                
-            
+
+            worldInteraction.Draw();
             spriteBatch.End();
 
             base.Draw(gameTime);
