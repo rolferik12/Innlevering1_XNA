@@ -227,15 +227,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crosshair\crosshairs2.png">
-      <Name>crosshairs2</Name>
+    <Compile Include="Character\Enemy BugTrollClick.png">
+      <Name>Enemy BugTrollClick</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\Enemy BugTrollClick.png">
-      <Name>Enemy BugTrollClick</Name>
+    <Compile Include="Other\victory screen.png">
+      <Name>victory screen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crosshair\crosshairs2.png">
+      <Name>crosshairs2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
