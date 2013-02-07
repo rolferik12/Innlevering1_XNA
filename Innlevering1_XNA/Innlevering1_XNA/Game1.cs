@@ -303,20 +303,88 @@ namespace Innlevering1_XNA
         /// </summary>
         void arrayData()
         {
-            //Sets the Y coordinates for the base vector2's.
             float windowHeight = (float)Window.ClientBounds.Height;
 
-            stoneBase.Y = windowHeight - (float)stoneBlock.Height / 0.89f;
-            wallBase.Y = windowHeight - (float)wallBlock.Height * 1.88f;
-            roofSouthBase.Y = windowHeight - (float)roofSouth.Height * 2.45f;
+            for (int x = 0; x < 7; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    int i = y * 7 + x;
+
+                    //Stone path data
+                    if (y == 4)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)stoneBlock.Height / 0.89f, stoneBlock, 1f);
+                    }
+
+                    //Wall data
+                    if (y == 3 && x == 5)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)wallBlock.Height * 1.75f, doorClosed, 0.5f);
+                    }
+                    else if (y == 3)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)wallBlock.Height * 1.88f, wallBlock, 0.5f);
+                    }
+
+                    //Roof south data
+                    if (y == 2 && x == 0)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouthWest, 0.2f);
+                    }
+                    else if (y == 2 && x == 5)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, windowTall, 0.2f);
+                    }
+                    else if (y == 2 && x == 6)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouthEast, 0.2f);
+                    }
+                    else if (y == 2)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouth, 0.2f);
+                    }
+
+                    //Roof middle data
+                    if (y == 1 && x == 0)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, roofWest, 0.4f);
+                    }
+                    else if (y == 1 && x == 5)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3.25f, roofNorth, 0.4f);
+                    }
+                    else if (y == 1 && x == 6)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, roofEast, 0.4f);
+                    }
+                    else if (y == 1)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, brownBlock, 0.4f);
+                    }
+
+                    //Roof north data
+                    if (y == 0 && x == 0)
+                    {
+                    }
+
+                }
+
+            }
+
+            //Sets the Y coordinates for the base vector2's.
+
+
+            //      stoneBase.Y = windowHeight - (float)stoneBlock.Height / 0.89f;
             roofMiddleBase.Y = windowHeight - (float)brownBlock.Height * 3f;
             roofNorthBase.Y = windowHeight - (float)roofNorth.Height * 3.5f;
 
             for (int coords = 0; coords < _arrayLenght; coords++)
             {
+
                 //stoneArray vector2 coordinates
-                stoneArray[coords] = new Vector2(stoneBase.X, stoneBase.Y);
-                stoneBase.X += xcord;
+                //          stoneArray[coords] = new Vector2(stoneBase.X, stoneBase.Y);
+                //          stoneBase.X += xcord;
 
                 //wallArray coordinates
                 wallArray[coords] = new Vector2(wallBase.X, wallBase.Y);
