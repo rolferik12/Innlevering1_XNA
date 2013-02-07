@@ -12,29 +12,29 @@ namespace Innlevering1_XNA
         /// <summary>
         /// Textures, vectors, etc.
         /// </summary>
-        Texture2D DM1;
-        Texture2D DM2;
-        Texture2D DM3;
-        Texture2D Enemy_Bug_Troll;
-        Texture2D Enemy_Bug_Troll_Down;
-        Vector2 bugPosition;
-        Vector2 bugSize;
-        Vector2 DMPosition;
-        Vector2 DMSize;
-        bool showDM = true;
-        Vector2[] possiblePositions;
-        int teller = 20;
-        int Score = 0;
+        Texture2D DM1;//Diamond1
+        Texture2D DM2;//DIamond2
+        Texture2D DM3;//Diamond3
+        Texture2D Enemy_Bug_Troll;//Bug troll face
+        Texture2D Enemy_Bug_Troll_Down;//big troll face if clicked
+        Vector2 bugPosition;//Possition of bug
+        Vector2 bugSize;// size of bug
+        Vector2 DMPosition; // Diamond possition
+        Vector2 DMSize; // diamond size
+        bool showDM = true; // bool for show diamond
+        Vector2[] possiblePositions; // vector for bug possitions
+        int teller = 20; // counter, how many clicks on the bug.
+        int Score = 0; // score for how many diamonds you hold
         Random rnd = new Random();
-        float timer = float.NaN;
-        float bugTimer = float.NaN;
+        float timer = float.NaN; // timer before bug reappears
+        float bugTimer = float.NaN; // timer for bug disappears
 
         /// <summary>
         /// Method for giving bugs new possition
         /// </summary>
         public void BugNewPosition() 
         {
-            teller = 20;
+            teller = 20; // timer on 20
             bugPosition = possiblePositions[rnd.Next(5)];
             bugTimer = 40;
         }
@@ -68,7 +68,7 @@ namespace Innlevering1_XNA
         /// timers etc.
         /// </summary>
         public void Update()
-        {
+        {       //bugtimer
             if (!bugTimer.Equals(float.NaN))
             {
                 bugTimer -= GameStatus.GameTimeInSec;
@@ -79,7 +79,7 @@ namespace Innlevering1_XNA
                     showDM = !showDM;
 
                 }
-            }
+            } //timer
             if (!timer.Equals(float.NaN))
             {
                 timer -= GameStatus.GameTimeInSec;
@@ -91,7 +91,7 @@ namespace Innlevering1_XNA
             }
             else
             {
-                if (GameStatus.MouseNewDown && GameStatus.Collide(bugPosition, bugSize, GameStatus.MousePosition, Vector2.One) && showDM == false)
+                if (GameStatus.MouseNewDown && GameStatus.Collide(bugPosition, bugSize, GameStatus.MousePosition, Vector2.One) && showDM == false) // click with mouse
                 {
                     teller--;
                     if (teller == 0)
@@ -102,7 +102,7 @@ namespace Innlevering1_XNA
                     }
 
                 }
-                else if (GameStatus.MouseNewDown && GameStatus.Collide(DMPosition, DMSize, GameStatus.MousePosition, Vector2.One) && showDM == true)
+                else if (GameStatus.MouseNewDown && GameStatus.Collide(DMPosition, DMSize, GameStatus.MousePosition, Vector2.One) && showDM == true) // kil bug
                 {
                     Score++;
                     if (Score == 3)
@@ -110,7 +110,7 @@ namespace Innlevering1_XNA
                         GameStatus.Victory = true;
                         return;
                     }
-                    else
+                    else // new bug possition
                     {
                         timer = 5;
                         BugNewPosition();
