@@ -14,45 +14,59 @@ namespace Innlevering1_XNA
         float characterSpawnTimeMax = 4;
         float nextSpawn = 2;
         Random rnd = new Random();
+        Texture2D GameOvertexture;
+        bool gameOver = false;
 
         public void Load() 
         {
             CharacterClass.Load();
             health = new Health();
+            GameOvertexture = GameStatus.Content.Load<Texture2D>("Other/you are dead");
         }
         public void Update() 
         {
-            nextSpawn -= GameStatus.GameTimeInSec;
-            if (nextSpawn <= 0) 
+            if (!gameOver)
             {
-                characters.Add(new Character(CharacterClass.GetRandom()));
-                nextSpawn = (float)rnd.NextDouble() * characterSpawnTimeMax + 0.1f;
-            }
-            for (int i = 0; i < characters.Count; i++)
-            {
-                if (GameStatus.MouseDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
+                nextSpawn -= GameStatus.GameTimeInSec;
+                if (nextSpawn <= 0)
                 {
-                    characters.RemoveAt(i);
-                    i--;
-                    continue;
+                    characters.Add(new Character(CharacterClass.GetRandom()));
+                    nextSpawn = (float)rnd.NextDouble() * characterSpawnTimeMax + 0.1f;
                 }
-                else if (characters[i].Position.X > GameStatus.windowBorder.X) 
+                for (int i = 0; i < characters.Count; i++)
                 {
-                    health.HealthLeft--;
-                    characters.RemoveAt(i);
-                    i--;
-                    continue;
+                    if (GameStatus.MouseDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
+                    {
+                        characters.RemoveAt(i);
+                        i--;
+                        continue;
+                    }
+                    else if (characters[i].Position.X > GameStatus.windowBorder.X)
+                    {
+                        health.HealthLeft--;
+                        characters.RemoveAt(i);
+                        i--;
+                        continue;
+                    }
+                    characters[i].Update();
                 }
-                characters[i].Update();
+                if (health.HealthLeft == 0) gameOver = true;
             }
         }
         public void Draw() 
         {
-            for (int i = 0; i < characters.Count; i++)
+            if (!gameOver)
             {
-                characters[i].Draw();
+                for (int i = 0; i < characters.Count; i++)
+                {
+                    characters[i].Draw();
+                }
+                health.Draw();
             }
-            health.Draw();
+            else 
+            {
+                GameStatus.SpriteBatch.Draw(GameOvertexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
+            }
         }
         bool collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2) 
         {

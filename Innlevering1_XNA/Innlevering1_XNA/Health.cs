@@ -14,7 +14,7 @@ namespace Innlevering1_XNA
         public int HealthLeft = 5;
         public Health() 
         {
-            healthTexture = GameStatus.Content.Load<Texture2D>("Character/Character_Boy2");
+            healthTexture = GameStatus.Content.Load<Texture2D>("Other/Heart");
             size = new Vector2(GameStatus.windowBorder.X / 20, GameStatus.windowBorder.Y / 20);
         }
         public void Draw() 
