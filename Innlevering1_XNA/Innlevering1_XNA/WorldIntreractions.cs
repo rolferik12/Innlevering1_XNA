@@ -18,6 +18,7 @@ namespace Innlevering1_XNA
         Random rnd = new Random();
         Texture2D GameOvertexture;
         bool gameOver = false;
+        float difficulty = 1;
 
         public void Load() 
         {
@@ -31,13 +32,17 @@ namespace Innlevering1_XNA
         {
             if (!gameOver)
             {
+                if (GameStatus.MouseNewDown) 
+                {
+                    difficulty += 0.03f;
+                }
                 ladybug.Update();
                 bool hasKilld = false;
                 nextSpawn -= GameStatus.GameTimeInSec;
                 if (nextSpawn <= 0)
                 {
                     characters.Add(new Character(CharacterClass.GetRandom()));
-                    nextSpawn = (float)rnd.NextDouble() * characterSpawnTimeMax + 0.1f;
+                    nextSpawn = (float)(rnd.NextDouble() * characterSpawnTimeMax + 0.1f) / difficulty;
                 }
                 for (int i = 0; i < characters.Count; i++)
                 {
