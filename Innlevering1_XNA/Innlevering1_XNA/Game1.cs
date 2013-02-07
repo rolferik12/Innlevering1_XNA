@@ -68,6 +68,9 @@ namespace Innlevering1_XNA
         private Texture2D cursorTex;
 
 
+        Texture2D BackgroundTexture;
+
+
         //Sets the variable for the scale size.
         float size;
         float xcord;
@@ -116,7 +119,10 @@ namespace Innlevering1_XNA
         
         protected override void LoadContent()
         {
-                            //Defines Cursor Texture
+            
+           
+                           
+            //Defines Cursor Texture
                         cursorTex = Content.Load<Texture2D>("Crosshair/Crosshairs2");
 
             // Create a new SpriteBatch, which can be used to draw textures.
