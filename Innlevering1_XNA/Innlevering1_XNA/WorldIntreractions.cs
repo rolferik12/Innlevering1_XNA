@@ -16,7 +16,8 @@ namespace Innlevering1_XNA
         float characterSpawnTimeMax = 4;
         float nextSpawn = 2;
         Random rnd = new Random();
-        Texture2D GameOvertexture;
+        Texture2D gameOvertexture;
+        Texture2D victoryTexture;
         bool gameOver = false;
         float difficulty = 1;
 
@@ -26,15 +27,16 @@ namespace Innlevering1_XNA
             CharacterClass.Load();
             health = new Health();
             ladybug.Load();
-            GameOvertexture = GameStatus.Content.Load<Texture2D>("Other/you are dead");
+            gameOvertexture = GameStatus.Content.Load<Texture2D>("Other/you are dead");
+            victoryTexture = GameStatus.Content.Load<Texture2D>("Other/victory screen");
         }
         public void Update() 
         {
-            if (!gameOver)
+            if (!gameOver && !GameStatus.Victory)
             {
                 if (GameStatus.MouseNewDown) 
                 {
-                    difficulty += 0.03f;
+                    difficulty += 0.02f;
                 }
                 ladybug.Update();
                 bool hasKilld = false;
@@ -80,7 +82,11 @@ namespace Innlevering1_XNA
             }
             else 
             {
-                GameStatus.SpriteBatch.Draw(GameOvertexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
+                GameStatus.SpriteBatch.Draw(gameOvertexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
+            }
+            if (GameStatus.Victory) 
+            {
+                GameStatus.SpriteBatch.Draw(victoryTexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
             }
         }
         bool collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2) 

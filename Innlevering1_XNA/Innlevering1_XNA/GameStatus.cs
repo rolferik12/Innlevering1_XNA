@@ -20,6 +20,7 @@ namespace Innlevering1_XNA
         public static bool MouseClick { get { return MouseLastDown == true && MouseDown == false; } }
         public static bool MouseNewDown { get { return MouseLastDown == false && MouseDown == true; } }
         public static Point windowBorder;
+        public static bool Victory;
 
         public static bool Collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2)
         {

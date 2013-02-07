@@ -21,7 +21,7 @@ namespace Innlevering1_XNA
         {
             for (int i = 0; i < HealthLeft; i++)
             {
-                GameStatus.SpriteBatch.Draw(healthTexture, new Rectangle(((int)size.X  + GameStatus.windowBorder.X / 200)* i , 0, (int)size.X, (int)size.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                GameStatus.SpriteBatch.Draw(healthTexture, new Rectangle(((int)size.X  + GameStatus.windowBorder.X / 200)* i , 0, (int)size.X, (int)size.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.001f);
             }
         }
     }

@@ -31,9 +31,9 @@ namespace Innlevering1_XNA
 
         public void BugNewPosition() 
         {
-            teller = 2;
+            teller = 20;
             bugPosition = possiblePositions[rnd.Next(5)];
-            bugTimer = 25;
+            bugTimer = 40;
         }
         public void DMNewPossition()
         {
@@ -52,7 +52,7 @@ namespace Innlevering1_XNA
             DM2 = GameStatus.Content.Load<Texture2D>("Other/Gem Green");
             DM3 = GameStatus.Content.Load<Texture2D>("Other/Gem Orange");
             bugSize = new Vector2(GameStatus.windowBorder.X / 12, GameStatus.windowBorder.X / 12);
-            DMSize = new Vector2(GameStatus.windowBorder.X / 13, GameStatus.windowBorder.X / 13);
+            DMSize = new Vector2(GameStatus.windowBorder.X / 15, GameStatus.windowBorder.X / 13);
             BugNewPosition();
             timer = 3;
             
@@ -97,7 +97,8 @@ namespace Innlevering1_XNA
                     Score++;
                     if (Score == 3)
                     {
-                        //end game *Du har vunnet TROLOLOLOL!*
+                        GameStatus.Victory = true;
+                        return;
                     }
                     else
                     {
@@ -113,7 +114,9 @@ namespace Innlevering1_XNA
             {
                 if (showDM == true)
                 {
-                    GameStatus.SpriteBatch.Draw(DM1, new Rectangle((int)DMPosition.X, (int)DMPosition.Y, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
+                    if(Score == 0) GameStatus.SpriteBatch.Draw(DM1, new Rectangle((int)DMPosition.X, (int)DMPosition.Y, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
+                    if (Score == 1) GameStatus.SpriteBatch.Draw(DM2, new Rectangle((int)DMPosition.X, (int)DMPosition.Y, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
+                    if (Score == 2) GameStatus.SpriteBatch.Draw(DM3, new Rectangle((int)DMPosition.X, (int)DMPosition.Y, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
                 }
                 else
                 {
@@ -123,15 +126,15 @@ namespace Innlevering1_XNA
             }
             if (Score > 0) 
             {
-                GameStatus.SpriteBatch.Draw(DM1, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 1)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                GameStatus.SpriteBatch.Draw(DM1, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 1)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.001f);
             }
             if (Score > 1)
             {
-                GameStatus.SpriteBatch.Draw(DM2, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 2)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                GameStatus.SpriteBatch.Draw(DM2, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 2)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.001f);
             }
             if (Score > 2)
             {
-                GameStatus.SpriteBatch.Draw(DM3, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 3)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                GameStatus.SpriteBatch.Draw(DM3, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 3)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.001f);
             }
         }
     }
