@@ -9,6 +9,7 @@ namespace Innlevering1_XNA
 {
     public class WorldIntreractions
     {
+        Health health;
         List<Character> characters = new List<Character>();
         float characterSpawnTimeMax = 4;
         float nextSpawn = 2;
@@ -17,6 +18,7 @@ namespace Innlevering1_XNA
         public void Load() 
         {
             CharacterClass.Load();
+            health = new Health();
         }
         public void Update() 
         {
@@ -34,6 +36,13 @@ namespace Innlevering1_XNA
                     i--;
                     continue;
                 }
+                else if (characters[i].Position.X > GameStatus.windowBorder.X) 
+                {
+                    health.Health--;
+                    characters.RemoveAt(i);
+                    i--;
+                    continue;
+                }
                 characters[i].Update();
             }
         }
@@ -43,6 +52,7 @@ namespace Innlevering1_XNA
             {
                 characters[i].Draw();
             }
+            health.Draw();
         }
         bool collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2) 
         {
