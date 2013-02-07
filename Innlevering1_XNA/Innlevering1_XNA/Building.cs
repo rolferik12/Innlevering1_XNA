@@ -50,7 +50,7 @@ namespace Innlevering1_XNA
             texturePosAndLayerArray = new arrayData[35];
 
 
-                        //Loads the stoneblock pictures
+            //Loads the stoneblock pictures
             stoneBlock = GameStatus.Content.Load<Texture2D>("Building/Stone Block");
 
             //Loads the wall and door pictures
