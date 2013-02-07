@@ -23,35 +23,9 @@ namespace Innlevering1_XNA
 
         WorldIntreractions worldInteraction = new WorldIntreractions();
 
-        //defines the array names and array lenght.
-        arrayData[] texturePosAndLayerArray;
-
-        //Texture vairables to load pictures
-        Texture2D stoneBlock;
-
-        Texture2D wallBlock;
-        Texture2D doorClosed;
-
-        Texture2D roofSouth;
-        Texture2D roofSouthEast;
-        Texture2D roofSouthWest;
-        Texture2D windowTall;
-
-        Texture2D roofWest;
-        Texture2D brownBlock;
-        Texture2D roofEast;
-        Texture2D roofNorth;
-
-        Texture2D roofNorthWest;
-        Texture2D roofNorthEast;
-
         // Cursor Texture Method.
         private Texture2D cursorTex;
         private Vector2 offsetPos;
-
-        //Sets the variable for the scale size.
-        float scale;
-        float xcord;
 
         //Variables for recoil
         bool recoil;
@@ -81,14 +55,7 @@ namespace Innlevering1_XNA
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            texturePosAndLayerArray = new arrayData[35];
-
-            //Defines how many pixels the width is.
-            xcord = (float)(Window.ClientBounds.Width / 7);
-
-            //sets the crosshair coords.
-            
+         
           
             base.Initialize();
 
@@ -112,11 +79,6 @@ namespace Innlevering1_XNA
 
             // TODO: use this.Content to load your game 
 
-            //Loads the picture content
-            loadPictures();
-
-            //calls on the array data
-            arrayData();
             
             //Sets static variables in gameStatus
             GameStatus.Content = Content;
@@ -201,161 +163,10 @@ namespace Innlevering1_XNA
             // Draws mouse position, texture, vector etc.
             spriteBatch.Draw(cursorTex, mousePosition - new Vector2(cursorTex.Width, cursorTex.Height) / 2, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.1f);
 
-
-            for (int i = 0; i < texturePosAndLayerArray.Length; i++)
-            {
-                if (texturePosAndLayerArray[i] != null) drawPictures(texturePosAndLayerArray[i].Pic, texturePosAndLayerArray[i].Pos, texturePosAndLayerArray[i].Layer);
-            }
-
             worldInteraction.Draw();
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
-
-
-        /// <summary>
-        /// Loads the specified pictures
-        /// </summary>
-        void loadPictures()
-        {
-            //Loads the stoneblock pictures
-            stoneBlock = this.Content.Load<Texture2D>("Building/Stone Block");
-
-            //Loads the wall and door pictures
-            wallBlock = this.Content.Load<Texture2D>("Building/Wall BLock Tall");
-            doorClosed = this.Content.Load<Texture2D>("Building/Door Tall CLosed");
-
-            //Loads the south roof pictures
-            roofSouth = this.Content.Load<Texture2D>("Building/Roof South");
-            roofSouthEast = this.Content.Load<Texture2D>("Building/Roof South East");
-            roofSouthWest = this.Content.Load<Texture2D>("Building/Roof South West");
-            windowTall = this.Content.Load<Texture2D>("Building/Window Tall");
-
-            //Loads the middle roof pictures
-            roofWest = this.Content.Load<Texture2D>("Building/Roof West");
-            brownBlock = this.Content.Load<Texture2D>("Building/Brown Block");
-            roofEast = this.Content.Load<Texture2D>("Building/Roof East");
-            roofNorth = this.Content.Load<Texture2D>("Building/Roof North");
-
-            //Loads the north roof pictures
-            roofNorthWest = this.Content.Load<Texture2D>("Building/Roof North West");
-            roofNorthEast = this.Content.Load<Texture2D>("Building/Roof North East");
-
-            //Sets the scale for the images
-            scale = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
-
-
-        }
-
-        /// <summary>
-        /// Sets the array coordinates for all arrays and sets the Y coordinate.
-        /// </summary>
-        void arrayData()
-        {
-            float windowHeight = (float)Window.ClientBounds.Height;
-
-            for (int x = 0; x < 7; x++)
-            {
-                for (int y = 0; y < 5; y++)
-                {
-                    int i = y * 7 + x;
-
-                    //Stone path data
-                    if (y == 4)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 3.1f, stoneBlock, 1f);
-                    }
-
-                    //Wall data
-                    if (y == 3 && x == 5)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 2.02f, doorClosed, 0.5f);
-                    }
-                    else if (y == 3)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.84f, wallBlock, 0.5f);
-                    }
-
-                    //Roof south data
-                    if (y == 2 && x == 0)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouthWest, 0.2f);
-                    }
-                    else if (y == 2 && x == 5)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, windowTall, 0.2f);
-                    }
-                    else if (y == 2 && x == 6)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouthEast, 0.2f);
-                    }
-                    else if (y == 2)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouth, 0.2f);
-                    }
-
-                    //Roof middle data
-                    if (y == 1 && x == 0)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, roofWest, 0.4f);
-                    }
-                    else if (y == 1 && x == 5)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.09f, roofNorth, 0.4f);
-                    }
-                    else if (y == 1 && x == 6)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, roofEast, 0.4f);
-                    }
-                    else if (y == 1)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, brownBlock, 0.4f);
-                    }
-
-                    //Roof north data
-                    if (y == 0 && x == 0)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorthWest, 0.5f);
-                    }
-                    else if (y == 0 && x == 6)
-                    {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorthEast, 0.5f);
-                    }
-                    else if (y == 0)
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorth, 0.5f);
-
-
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// creates a spritebatch draw, drawing the desired picture with the coordinates from the desired array.
-        /// </summary>
-        /// <param name="pictureName">The texture2d name of the content file</param>
-        /// <param name="arrayName">name and optionally the array position where the picture is to be drawn</param>
-        /// <param name="layerDepth">Sets the layer depth of the picture</param>
-        void drawPictures(Texture2D pictureName, Vector2 arrayName, float layerDepth)
-        {
-            spriteBatch.Draw(pictureName, arrayName, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
-        }
-    }
-    public class arrayData
-    {
-        public Vector2 Pos;
-        public Texture2D Pic;
-        public float Layer;
-
-        public arrayData(float X, float Y, Texture2D Pic, float Layer)
-        {
-            this.Pos.X = X;
-            this.Pos.Y = Y;
-            this.Pic = Pic;
-            this.Layer = Layer;
-        }
-
     }
 }

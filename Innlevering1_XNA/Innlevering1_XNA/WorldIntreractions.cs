@@ -9,6 +9,7 @@ namespace Innlevering1_XNA
 {
     public class WorldIntreractions
     {
+        Building building = new Building();
         Health health;
         Ladybug ladybug = new Ladybug();
         List<Character> characters = new List<Character>();
@@ -20,6 +21,7 @@ namespace Innlevering1_XNA
 
         public void Load() 
         {
+            building.Load();
             CharacterClass.Load();
             health = new Health();
             ladybug.Load();
@@ -60,6 +62,8 @@ namespace Innlevering1_XNA
         }
         public void Draw() 
         {
+            building.Draw();
+
             if (!gameOver)
             {
                 for (int i = 0; i < characters.Count; i++)
