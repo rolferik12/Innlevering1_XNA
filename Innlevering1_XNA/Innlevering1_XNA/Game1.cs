@@ -57,6 +57,17 @@ namespace Innlevering1_XNA
         Texture2D roofNorthWest;
         Texture2D roofNorthEast;
 
+        // Characters
+        Texture2D Character_Boy2;
+        Texture2D Character_Cat_Girl2;
+        Texture2D Character_Horn_Girl2;
+        Texture2D Character_Pink_Girl2;
+        Texture2D Character_Princess_Girl2;
+
+        // Cursor Texture Method.
+        private Texture2D cursorTex;
+
+
         //Sets the variable for the scale size.
         float size;
         float xcord;
@@ -70,7 +81,6 @@ namespace Innlevering1_XNA
             graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
 
-            IsMouseVisible = true;
         }
 
         
@@ -103,8 +113,12 @@ namespace Innlevering1_XNA
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
+        
         protected override void LoadContent()
         {
+                            //Defines Cursor Texture
+                        cursorTex = Content.Load<Texture2D>("Crosshair/Crosshairs2");
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -115,6 +129,7 @@ namespace Innlevering1_XNA
 
             //calls on the array data
             arrayData();
+            
 
         }
 
@@ -133,6 +148,8 @@ namespace Innlevering1_XNA
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
+        Vector2 mousePosition;
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
@@ -140,6 +157,12 @@ namespace Innlevering1_XNA
                 this.Exit();
 
             // TODO: Add your update logic here
+
+           // Set Mouse Position
+            var mouse = Mouse.GetState();
+            mousePosition.X = mouse.X;
+            mousePosition.Y = mouse.Y;
+
 
             base.Update(gameTime);
         }
@@ -155,6 +178,9 @@ namespace Innlevering1_XNA
             // TODO: Add your drawing code here
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+
+            // Draws mouse position, texture, vector etc.
+            spriteBatch.Draw(cursorTex, mousePosition - new Vector2(cursorTex.Width, cursorTex.Height) / 2, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.1f);
 
 
             for (int arrayNumberCount = 0; arrayNumberCount < _arrayLenght; arrayNumberCount++)
