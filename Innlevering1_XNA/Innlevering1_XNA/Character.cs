@@ -9,11 +9,15 @@ namespace Innlevering1_XNA
 {
     public class CharacterClass 
     {
+        //Variables
         public Texture2D Texture;
         public float Speed;
 
-        public static CharacterClass[] Classes;
+        public static CharacterClass[] Classes; //Stores all the different CharacterClasses
         public static Random rnd = new Random();
+        /// <summary>
+        /// Loads the CharacterClasses. Must be done before using GetRandom
+        /// </summary>
         public static void Load() 
         {
             Classes = new CharacterClass[] 
@@ -25,6 +29,10 @@ namespace Innlevering1_XNA
                 new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character/Character_Princess_Girl2"), Speed = 130f}
             };
         }
+        /// <summary>
+        /// Gets a random CharacterClass
+        /// </summary>
+        /// <returns></returns>
         public static CharacterClass GetRandom() 
         {
             return Classes[rnd.Next(5)];
@@ -32,6 +40,7 @@ namespace Innlevering1_XNA
     }
     public class Character
     {
+        //Variables
         CharacterClass charClass;
         public Vector2 Position;
         public Vector2 Size;
@@ -44,7 +53,7 @@ namespace Innlevering1_XNA
 
         public void Update() 
         {
-            Position.X += charClass.Speed * GameStatus.GameTimeInSec;
+            Position.X += charClass.Speed * GameStatus.GameTimeInSec; //Moves this character
         }
         public void Draw() 
         {

@@ -9,11 +9,13 @@ namespace Innlevering1_XNA
 {
     public class Health
     {
+        //Variables
         Texture2D healthTexture;
         Vector2 size;
         public int HealthLeft = 5;
         public Health() 
         {
+            //Because Helat is only created afper the directx context is create we can load resources in the constructor
             healthTexture = GameStatus.Content.Load<Texture2D>("Other/Heart");
             size = new Vector2(GameStatus.windowBorder.X / 25, GameStatus.windowBorder.Y / 20);
         }

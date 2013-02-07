@@ -9,6 +9,7 @@ namespace Innlevering1_XNA
 {
     public class WorldIntreractions
     {
+        //Variables
         Building building = new Building();
         Health health;
         Ladybug ladybug = new Ladybug();
@@ -21,6 +22,9 @@ namespace Innlevering1_XNA
         bool gameOver = false;
         float difficulty = 1;
 
+        /// <summary>
+        /// Loads content
+        /// </summary>
         public void Load() 
         {
             building.Load();
@@ -30,25 +34,28 @@ namespace Innlevering1_XNA
             gameOvertexture = GameStatus.Content.Load<Texture2D>("Other/you are dead");
             victoryTexture = GameStatus.Content.Load<Texture2D>("Other/victory screen");
         }
+        /// <summary>
+        /// Updates all the interactive parts of the game
+        /// </summary>
         public void Update() 
         {
-            if (!gameOver && !GameStatus.Victory)
+            if (!gameOver && !GameStatus.Victory) //Only update if you're still is playing
             {
-                if (GameStatus.MouseNewDown) 
+                if (GameStatus.MouseNewDown) //Every time the mousebutton is clicked then increase the difficulty
                 {
                     difficulty += 0.02f;
                 }
-                ladybug.Update();
-                bool hasKilld = false;
+                ladybug.Update(); //Updates everything related to Ladybug nad gems
+                bool hasKilld = false; //Stores if you have killd someone this update. Can only kill one pr frame
                 nextSpawn -= GameStatus.GameTimeInSec;
-                if (nextSpawn <= 0)
+                if (nextSpawn <= 0) //If nextSpawn <= 0 then spawn a new enemy
                 {
                     characters.Add(new Character(CharacterClass.GetRandom()));
                     nextSpawn = (float)(rnd.NextDouble() * characterSpawnTimeMax + 0.1f) / difficulty;
                 }
-                for (int i = 0; i < characters.Count; i++)
+                for (int i = 0; i < characters.Count; i++) //Check if a character is shot and if it have taken a life from you
                 {
-                    if (!hasKilld && GameStatus.MouseNewDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
+                    if (!hasKilld && GameStatus.MouseNewDown && GameStatus.Collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
                     {
                         hasKilld = true;
                         characters.RemoveAt(i);
@@ -67,11 +74,14 @@ namespace Innlevering1_XNA
                 if (health.HealthLeft == 0) gameOver = true;
             }
         }
+        /// <summary>
+        /// Draws everything belonging to WorldInteraction
+        /// </summary>
         public void Draw() 
         {
             building.Draw();
 
-            if (!gameOver)
+            if (!gameOver) //If game over Then dont draw characters or bugs
             {
                 for (int i = 0; i < characters.Count; i++)
                 {
@@ -80,26 +90,14 @@ namespace Innlevering1_XNA
                 ladybug.Draw();
                 health.Draw();
             }
-            else 
+            else //If game over
             {
                 GameStatus.SpriteBatch.Draw(gameOvertexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
             }
-            if (GameStatus.Victory) 
+            if (GameStatus.Victory) //If you have won
             {
                 GameStatus.SpriteBatch.Draw(victoryTexture, new Rectangle(0, 0, (int)GameStatus.windowBorder.X, (int)GameStatus.windowBorder.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0f);
             }
-        }
-        bool collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2) 
-        {
-            if (Position1.X + Size1.X >= Position2.X &&
-                Position1.X <= Position2.X + Size2.X &&
-                Position1.Y + Size1.Y >= Position2.Y &&
-                Position1.Y <= Position2.Y + Size2.Y)
-            {
-
-                return true;
-            }
-            return false;
         }
     }
 }

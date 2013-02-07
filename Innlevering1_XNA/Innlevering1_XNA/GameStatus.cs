@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Innlevering1_XNA
 {
+    /// <summary>
+    /// This class contains objects that are used by many different classes.
+    /// </summary>
     public static class GameStatus
     {
         public static SpriteBatch SpriteBatch;
@@ -22,6 +25,14 @@ namespace Innlevering1_XNA
         public static Point windowBorder;
         public static bool Victory;
 
+        /// <summary>
+        /// Collision detection
+        /// </summary>
+        /// <param name="Position1"></param>
+        /// <param name="Size1"></param>
+        /// <param name="Position2"></param>
+        /// <param name="Size2"></param>
+        /// <returns></returns>
         public static bool Collide(Vector2 Position1, Vector2 Size1, Vector2 Position2, Vector2 Size2)
         {
             if (Position1.X + Size1.X >= Position2.X &&
