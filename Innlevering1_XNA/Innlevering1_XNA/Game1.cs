@@ -72,8 +72,6 @@ namespace Innlevering1_XNA
             graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
 
-            IsMouseVisible = true;
-
         }
 
         
