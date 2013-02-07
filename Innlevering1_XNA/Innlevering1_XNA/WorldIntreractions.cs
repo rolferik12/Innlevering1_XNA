@@ -10,6 +10,7 @@ namespace Innlevering1_XNA
     public class WorldIntreractions
     {
         Health health;
+        Ladybug ladybug = new Ladybug();
         List<Character> characters = new List<Character>();
         float characterSpawnTimeMax = 4;
         float nextSpawn = 2;
@@ -21,12 +22,14 @@ namespace Innlevering1_XNA
         {
             CharacterClass.Load();
             health = new Health();
+            ladybug.Load();
             GameOvertexture = GameStatus.Content.Load<Texture2D>("Other/you are dead");
         }
         public void Update() 
         {
             if (!gameOver)
             {
+                ladybug.Update();
                 bool hasKilld = false;
                 nextSpawn -= GameStatus.GameTimeInSec;
                 if (nextSpawn <= 0)
@@ -63,6 +66,7 @@ namespace Innlevering1_XNA
                 {
                     characters[i].Draw();
                 }
+                ladybug.Draw();
                 health.Draw();
             }
             else 
