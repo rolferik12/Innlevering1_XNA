@@ -9,6 +9,9 @@ namespace Innlevering1_XNA
 {
     public class Ladybug
     {
+        /// <summary>
+        /// Textures, vectors, etc.
+        /// </summary>
         Texture2D DM1;
         Texture2D DM2;
         Texture2D DM3;
@@ -36,9 +39,10 @@ namespace Innlevering1_XNA
         {
             DMPosition = bugPosition;
         }
-
+        
         public void Load() 
         {
+                //Possitions, loading textures.
             float x = GameStatus.windowBorder.X / 6.5f;
             float y = GameStatus.windowBorder.Y - GameStatus.windowBorder.Y / 1.33f;
             possiblePositions = new Vector2[] { new Vector2(x * 1, y), new Vector2(x * 2, y), new Vector2(x * 3, y), new Vector2(x * 4, y), new Vector2(x * 5, y * 1.35f) };
