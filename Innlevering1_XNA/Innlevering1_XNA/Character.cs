@@ -38,7 +38,7 @@ namespace Innlevering1_XNA
         public Character(CharacterClass Class) 
         {
             this.charClass = Class;
-            Size = new Vector2(GameStatus.windowBorder.X / 8, GameStatus.windowBorder.Y / 6);
+            Size = new Vector2(GameStatus.windowBorder.X / 11, GameStatus.windowBorder.Y / 6);
             Position = new Vector2(-Size.X, GameStatus.windowBorder.Y - Size.Y - GameStatus.windowBorder.Y / 15);
         }
 

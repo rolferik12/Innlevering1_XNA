@@ -14,7 +14,11 @@ namespace Innlevering1_XNA
         public static ContentManager Content;
         public static float GameTimeInSec = 0;
         public static Vector2 MousePosition = new Vector2(0, 0);
-        public static bool MouseDown = false;
+        static bool mouseDown = false;
+        public static bool MouseDown { get { return mouseDown; } set { MouseLastDown = mouseDown; mouseDown = value; } }
+        public static bool MouseLastDown = false;
+        public static bool MouseClick { get { return MouseLastDown == true && MouseDown == false; } }
+        public static bool MouseNewDown { get { return MouseLastDown == false && MouseDown == true; } }
         public static Point windowBorder;
     }
 }

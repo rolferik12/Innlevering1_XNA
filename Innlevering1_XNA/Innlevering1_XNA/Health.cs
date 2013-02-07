@@ -15,13 +15,13 @@ namespace Innlevering1_XNA
         public Health() 
         {
             healthTexture = GameStatus.Content.Load<Texture2D>("Other/Heart");
-            size = new Vector2(GameStatus.windowBorder.X / 20, GameStatus.windowBorder.Y / 20);
+            size = new Vector2(GameStatus.windowBorder.X / 25, GameStatus.windowBorder.Y / 20);
         }
         public void Draw() 
         {
             for (int i = 0; i < HealthLeft; i++)
             {
-                GameStatus.SpriteBatch.Draw(healthTexture, new Rectangle((int)size.X * i , 0, (int)size.X, (int)size.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                GameStatus.SpriteBatch.Draw(healthTexture, new Rectangle(((int)size.X  + GameStatus.windowBorder.X / 200)* i , 0, (int)size.X, (int)size.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
             }
         }
     }

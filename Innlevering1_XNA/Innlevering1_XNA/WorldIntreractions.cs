@@ -27,6 +27,7 @@ namespace Innlevering1_XNA
         {
             if (!gameOver)
             {
+                bool hasKilld = false;
                 nextSpawn -= GameStatus.GameTimeInSec;
                 if (nextSpawn <= 0)
                 {
@@ -35,8 +36,9 @@ namespace Innlevering1_XNA
                 }
                 for (int i = 0; i < characters.Count; i++)
                 {
-                    if (GameStatus.MouseDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
+                    if (!hasKilld && GameStatus.MouseNewDown && collide(characters[i].Position, characters[i].Size, GameStatus.MousePosition, Vector2.One))
                     {
+                        hasKilld = true;
                         characters.RemoveAt(i);
                         i--;
                         continue;
