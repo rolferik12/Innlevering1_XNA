@@ -1,5 +1,5 @@
 using System;
-
+//Test komentar
 namespace Innlevering1_XNA
 {
 #if WINDOWS || XBOX
