@@ -23,7 +23,9 @@ namespace Innlevering1_XNA
 
         //defines the array names and array lenght.
         static int _arrayLenght = 7;
-        
+
+        arrayData[] texturePosAndLayerArray;
+
         Vector2[] stoneArray;
         Vector2[] wallArray;
         Vector2[] roofSouthArray;
@@ -46,7 +48,7 @@ namespace Innlevering1_XNA
 
         Texture2D roofSouth;
         Texture2D roofSouthEast;
-        Texture2D roofSoutWest;
+        Texture2D roofSouthWest;
         Texture2D windowTall;
 
         Texture2D roofWest;
@@ -104,7 +106,8 @@ namespace Innlevering1_XNA
             roofMiddleArray = new Vector2[_arrayLenght];
             roofNorthArray = new Vector2[_arrayLenght];
 
-            
+            texturePosAndLayerArray = new arrayData[35];
+
             //Defines how many pixels the width is.
             xcord = (float)(Window.ClientBounds.Width / 7);
           
@@ -189,74 +192,12 @@ namespace Innlevering1_XNA
             spriteBatch.Draw(cursorTex, mousePosition - new Vector2(cursorTex.Width, cursorTex.Height) / 2, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0.1f);
 
 
-            for (int arrayNumberCount = 0; arrayNumberCount < _arrayLenght; arrayNumberCount++)
+            for (int i = 0; i < texturePosAndLayerArray.Length; i++)
             {
-
-                //Draws the stone patio
-                drawPictures(stoneBlock, stoneArray[arrayNumberCount], 1);
-
-
-                //Draws the wall
-                if (wallArray[arrayNumberCount] == wallArray[5])
-                {
-                    drawPictures(doorClosed, wallArray[5], 0.5f);
-                }
-                else
-                    drawPictures(wallBlock, wallArray[arrayNumberCount], 0.4f);
-
-
-                //Draws the south roof
-                if (roofSouthArray[arrayNumberCount] == roofSouthArray[0])
-                {
-                    drawPictures(roofSoutWest, roofSouthArray[0], 0.2f);
-                }
-                else if (roofSouthArray[arrayNumberCount] == roofSouthArray[6])
-                {
-                    drawPictures(roofSouthEast, roofSouthArray[6], 0.2f);
-                }
-                else if (roofSouthArray[arrayNumberCount] == roofSouthArray[5])
-                {
-                    drawPictures(windowTall, roofSouthArray[5], 0.2f);
-                }
-                else
-                {
-                    drawPictures(roofSouth, roofSouthArray[arrayNumberCount], 0.2f);
-                }
-
-
-                //Draws the middle roof
-                if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[0])
-                {
-                    drawPictures(roofWest, roofMiddleArray[0], 0.4f);
-                }
-                else if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[5])
-                {
-                    drawPictures(roofNorth, roofMiddleArray[5], 0.4f);
-                }
-                else if (roofMiddleArray[arrayNumberCount] == roofMiddleArray[6])
-                {
-                    drawPictures(roofEast, roofMiddleArray[6], 0.4f);
-                }
-                else
-                {
-                    drawPictures(brownBlock, roofMiddleArray[arrayNumberCount], 0.4f);
-                }
-
-                //Draws the north roof
-                if (roofNorthArray[arrayNumberCount] == roofNorthArray[0])
-                {
-                    drawPictures(roofNorthWest, roofNorthArray[0], 0.5f);
-                }
-                else if (roofNorthArray[arrayNumberCount] == roofNorthArray[6])
-                {
-                    drawPictures(roofNorthEast, roofNorthArray[6], 0.5f);
-                }
-                else
-                {
-                    drawPictures(roofNorth, roofNorthArray[arrayNumberCount], 0.5f);
-                }
-                
+                if (texturePosAndLayerArray[i] != null) drawPictures(texturePosAndLayerArray[i].Pic, texturePosAndLayerArray[i].Pos, texturePosAndLayerArray[i].Layer);
             }
+                
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -279,7 +220,7 @@ namespace Innlevering1_XNA
             //Loads the south roof pictures
             roofSouth = this.Content.Load<Texture2D>("Building/Roof South");
             roofSouthEast = this.Content.Load<Texture2D>("Building/Roof South East");
-            roofSoutWest = this.Content.Load<Texture2D>("Building/Roof South West");
+            roofSouthWest = this.Content.Load<Texture2D>("Building/Roof South West");
             windowTall = this.Content.Load<Texture2D>("Building/Window Tall");
 
             //Loads the middle roof pictures
