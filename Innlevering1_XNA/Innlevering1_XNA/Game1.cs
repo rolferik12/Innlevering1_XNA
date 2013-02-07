@@ -139,7 +139,9 @@ namespace Innlevering1_XNA
             //calls on the array data
             arrayData();
             
-
+            //Sets static variables in gameStatus
+            GameStatus.Content = Content;
+            GameStatus.SpriteBatch = spriteBatch;
         }
 
 

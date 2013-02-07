@@ -13,12 +13,21 @@ namespace Innlevering1_XNA
         public float Speed;
 
         public static CharacterClass[] Classes;
+        public static Random rnd = new Random();
         public static void Load() 
         {
             Classes = new CharacterClass[] 
             {
- 
+                new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character_Boy2"), Speed = 95f},
+                new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character_Cat_Girl2"), Speed = 80f},
+                new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character_Horn_Girl2"), Speed = 150f},
+                new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character_Pink_Girl2"), Speed = 100f},
+                new CharacterClass(){Texture = GameStatus.Content.Load<Texture2D>("Character_Princess_Girl2"), Speed = 130f}
             };
+        }
+        public static CharacterClass GetRandom() 
+        {
+            return Classes[rnd.Next(5)];
         }
     }
     public class Character

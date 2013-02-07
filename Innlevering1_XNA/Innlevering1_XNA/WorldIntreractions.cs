@@ -20,7 +20,7 @@ namespace Innlevering1_XNA
             nextSpawn -= GameStatus.GameTimeInSec;
             if (nextSpawn <= 0) 
             {
-                //characters.Add(new Character());
+                characters.Add(new Character(CharacterClass.GetRandom()));
                 nextSpawn = (float)rnd.NextDouble() * characterSpawnTimeMax + 0.1f;
             }
             for (int i = 0; i < characters.Count; i++)
