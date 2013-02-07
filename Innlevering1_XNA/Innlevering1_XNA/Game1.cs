@@ -164,6 +164,11 @@ namespace Innlevering1_XNA
 
             worldInteraction.Update();
 
+            //if (GameStatus.MouseNewDown)
+            //{ 
+                
+            //}
+
             base.Update(gameTime);
         }
 
@@ -246,66 +251,66 @@ namespace Innlevering1_XNA
                     //Stone path data
                     if (y == 4)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)stoneBlock.Height / 0.89f, stoneBlock, 1f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 3.1f, stoneBlock, 1f);
                     }
 
                     //Wall data
                     if (y == 3 && x == 5)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)wallBlock.Height * 1.75f, doorClosed, 0.5f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 2.02f, doorClosed, 0.5f);
                     }
                     else if (y == 3)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)wallBlock.Height * 1.88f, wallBlock, 0.5f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.84f, wallBlock, 0.5f);
                     }
 
                     //Roof south data
                     if (y == 2 && x == 0)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouthWest, 0.2f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouthWest, 0.2f);
                     }
                     else if (y == 2 && x == 5)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, windowTall, 0.2f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, windowTall, 0.2f);
                     }
                     else if (y == 2 && x == 6)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouthEast, 0.2f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouthEast, 0.2f);
                     }
                     else if (y == 2)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofSouth.Height * 2.45f, roofSouth, 0.2f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.43f, roofSouth, 0.2f);
                     }
 
                     //Roof middle data
                     if (y == 1 && x == 0)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, roofWest, 0.4f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, roofWest, 0.4f);
                     }
                     else if (y == 1 && x == 5)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3.25f, roofNorth, 0.4f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.09f, roofNorth, 0.4f);
                     }
                     else if (y == 1 && x == 6)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, roofEast, 0.4f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, roofEast, 0.4f);
                     }
                     else if (y == 1)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)brownBlock.Height * 3f, brownBlock, 0.4f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.19f, brownBlock, 0.4f);
                     }
 
                     //Roof north data
                     if (y == 0 && x == 0)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorthWest, 0.5f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorthWest, 0.5f);
                     }
                     else if (y == 0 && x == 6)
                     {
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorthEast, 0.5f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorthEast, 0.5f);
                     }
                     else if (y == 0)
-                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorth, 0.5f);
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - windowHeight / 1.005f, roofNorth, 0.5f);
 
 
                 }
