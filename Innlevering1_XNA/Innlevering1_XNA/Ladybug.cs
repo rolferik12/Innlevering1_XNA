@@ -29,20 +29,27 @@ namespace Innlevering1_XNA
         float timer = float.NaN;
         float bugTimer = float.NaN;
 
+        /// <summary>
+        /// Method for giving bugs new possition
+        /// </summary>
         public void BugNewPosition() 
         {
             teller = 20;
             bugPosition = possiblePositions[rnd.Next(5)];
             bugTimer = 40;
         }
+        /// <summary>
+        /// Diamonds Spawn at same place bug was.
+        /// </summary>
         public void DMNewPossition()
         {
             DMPosition = bugPosition;
         }
-        
+        /// <summary>
+        /// Possitions, loading textures.
+        /// </summary>
         public void Load() 
         {
-                //Possitions, loading textures.
             float x = GameStatus.windowBorder.X / 6.5f;
             float y = GameStatus.windowBorder.Y - GameStatus.windowBorder.Y / 1.33f;
             possiblePositions = new Vector2[] { new Vector2(x * 1, y), new Vector2(x * 2, y), new Vector2(x * 3, y), new Vector2(x * 4, y), new Vector2(x * 5, y * 1.35f) };
@@ -57,6 +64,9 @@ namespace Innlevering1_XNA
             timer = 3;
             
         }
+        /// <summary>
+        /// timers etc.
+        /// </summary>
         public void Update()
         {
             if (!bugTimer.Equals(float.NaN))
@@ -108,6 +118,9 @@ namespace Innlevering1_XNA
                 } 
             }
         }
+        /// <summary>
+        /// draws the textures etc.
+        /// </summary>
         public void Draw()
         {
             if (timer.Equals(float.NaN))
