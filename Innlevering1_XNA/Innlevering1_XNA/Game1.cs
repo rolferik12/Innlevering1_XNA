@@ -360,4 +360,19 @@ namespace Innlevering1_XNA
             spriteBatch.Draw(pictureName, arrayName, null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, layerDepth);
         }
     }
+    public class arrayData
+    {
+        public Vector2 Pos;
+        public Texture2D Pic;
+        public float Layer;
+
+        public arrayData(float X, float Y, Texture2D Pic, float Layer)
+        {
+            this.Pos.X = X;
+            this.Pos.Y = Y;
+            this.Pic = Pic;
+            this.Layer = Layer;
+        }
+
+    }
 }
