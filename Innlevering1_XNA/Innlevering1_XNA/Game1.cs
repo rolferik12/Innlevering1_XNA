@@ -58,7 +58,7 @@ namespace Innlevering1_XNA
 
 
         //Sets the variable for the scale size.
-        float size;
+        float scale;
         float xcord;
 
 
@@ -214,7 +214,7 @@ namespace Innlevering1_XNA
             roofNorthEast = this.Content.Load<Texture2D>("Building/Roof North East");
 
             //Sets the scale for the images
-            size = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
+            scale = (float)(Window.ClientBounds.Width / 7) / (float)stoneBlock.Width;
 
 
         }
@@ -310,7 +310,7 @@ namespace Innlevering1_XNA
         /// <param name="layerDepth">Sets the layer depth of the picture</param>
         void drawPictures(Texture2D pictureName, Vector2 arrayName, float layerDepth)
         {
-            spriteBatch.Draw(pictureName, arrayName, null, Color.White, 0, Vector2.Zero, size, SpriteEffects.None, layerDepth);
+            spriteBatch.Draw(pictureName, arrayName, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
         }
     }
     public class arrayData
