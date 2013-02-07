@@ -54,6 +54,8 @@ namespace Innlevering1_XNA
 
         // Cursor Texture Method.
         private Texture2D cursorTex;
+        private Vector2 offsetPos;
+
 
 
         Texture2D BackgroundTexture;
@@ -62,6 +64,12 @@ namespace Innlevering1_XNA
         //Sets the variable for the scale size.
         float scale;
         float xcord;
+
+        //Variables for recoil
+        bool recoil;
+        float recoilAcceleration = 600;
+        float recoilHeight = 300;
+        float recoilSpeedY;
 
 
       
@@ -90,6 +98,9 @@ namespace Innlevering1_XNA
 
             //Defines how many pixels the width is.
             xcord = (float)(Window.ClientBounds.Width / 7);
+
+            //sets the crosshair coords.
+            
           
             base.Initialize();
 
@@ -106,7 +117,7 @@ namespace Innlevering1_XNA
            
                            
             //Defines Cursor Texture
-                        cursorTex = Content.Load<Texture2D>("Crosshair/Crosshairs2");
+            cursorTex = Content.Load<Texture2D>("Crosshair/Crosshairs2");
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -155,8 +166,8 @@ namespace Innlevering1_XNA
 
            // Set Mouse Position
             var mouse = Mouse.GetState();
-            mousePosition.X = mouse.X;
-            mousePosition.Y = mouse.Y;
+            mousePosition.X = mouse.X + offsetPos.X;
+            mousePosition.Y = mouse.Y + offsetPos.Y;
 
             GameStatus.GameTimeInSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             GameStatus.MousePosition = mousePosition;
@@ -164,10 +175,25 @@ namespace Innlevering1_XNA
 
             worldInteraction.Update();
 
-            //if (GameStatus.MouseNewDown)
-            //{ 
-                
-            //}
+            if (GameStatus.MouseNewDown)
+            {
+                recoil = true;
+                recoilSpeedY = recoilHeight;
+            }
+
+            if (recoil)
+            {
+                if (0 >= offsetPos.Y)
+                {
+                    recoilSpeedY -= recoilAcceleration * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    offsetPos.Y -= recoilSpeedY * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else
+                {
+                    offsetPos.Y = 0;
+                    recoil = false;
+                }
+            }
 
             base.Update(gameTime);
         }
