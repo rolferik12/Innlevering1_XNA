@@ -309,7 +309,15 @@ namespace Innlevering1_XNA
                     //Roof north data
                     if (y == 0 && x == 0)
                     {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorthWest, 0.5f);
                     }
+                    else if (y == 0 && x == 6)
+                    {
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorthEast, 0.5f);
+                    }
+                    else if (y == 0)
+                        texturePosAndLayerArray[i] = new arrayData(xcord * x, windowHeight - (float)roofNorth.Height * 3.5f, roofNorth, 0.5f);
+
 
                 }
 
