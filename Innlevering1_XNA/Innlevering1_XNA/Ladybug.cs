@@ -28,9 +28,9 @@ namespace Innlevering1_XNA
 
         public void BugNewPosition() 
         {
-            teller = 20;
-            bugPosition = possiblePositions[4];
-            bugTimer = 15;
+            teller = 2;
+            bugPosition = possiblePositions[rnd.Next(5)];
+            bugTimer = 25;
         }
         public void DMNewPossition()
         {
@@ -48,7 +48,7 @@ namespace Innlevering1_XNA
             DM2 = GameStatus.Content.Load<Texture2D>("Other/Gem Green");
             DM3 = GameStatus.Content.Load<Texture2D>("Other/Gem Orange");
             bugSize = new Vector2(GameStatus.windowBorder.X / 12, GameStatus.windowBorder.X / 12);
-            DMSize = new Vector2(GameStatus.windowBorder.X / 10, GameStatus.windowBorder.X / 10);
+            DMSize = new Vector2(GameStatus.windowBorder.X / 13, GameStatus.windowBorder.X / 13);
             BugNewPosition();
             timer = 3;
             
@@ -115,7 +115,19 @@ namespace Innlevering1_XNA
                 {
                     if (GameStatus.MouseDown && GameStatus.Collide(bugPosition, bugSize, GameStatus.MousePosition, Vector2.One)) GameStatus.SpriteBatch.Draw(Enemy_Bug_Troll_Down, new Rectangle((int)bugPosition.X, (int)bugPosition.Y, (int)bugSize.X, (int)bugSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
                     else GameStatus.SpriteBatch.Draw(Enemy_Bug_Troll, new Rectangle((int)bugPosition.X, (int)bugPosition.Y, (int)bugSize.X, (int)bugSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.19f);
-                } 
+                }
+            }
+            if (Score > 0) 
+            {
+                GameStatus.SpriteBatch.Draw(DM1, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 1)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+            }
+            if (Score > 1)
+            {
+                GameStatus.SpriteBatch.Draw(DM2, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 2)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+            }
+            if (Score > 2)
+            {
+                GameStatus.SpriteBatch.Draw(DM3, new Rectangle((int)(GameStatus.windowBorder.X - (bugSize.X * 3)), 0, (int)DMSize.X, (int)DMSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
             }
         }
     }
