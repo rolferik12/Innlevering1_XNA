@@ -45,21 +45,9 @@ namespace Innlevering1_XNA
         Texture2D roofNorthWest;
         Texture2D roofNorthEast;
 
-        // Characters
-        Texture2D Character_Boy2;
-        Texture2D Character_Cat_Girl2;
-        Texture2D Character_Horn_Girl2;
-        Texture2D Character_Pink_Girl2;
-        Texture2D Character_Princess_Girl2;
-
         // Cursor Texture Method.
         private Texture2D cursorTex;
         private Vector2 offsetPos;
-
-
-
-        Texture2D BackgroundTexture;
-
 
         //Sets the variable for the scale size.
         float scale;
@@ -67,8 +55,8 @@ namespace Innlevering1_XNA
 
         //Variables for recoil
         bool recoil;
-        float recoilAcceleration = 600;
-        float recoilHeight = 300;
+        float recoilAcceleration = 1500;
+        float recoilHeight = 400;
         float recoilSpeedY;
 
 
