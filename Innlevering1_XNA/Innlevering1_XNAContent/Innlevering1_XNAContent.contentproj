@@ -167,13 +167,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crosshair\crosshairs2.png">
-      <Name>crosshairs2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Background\BackgroundTex.jpg">
       <Name>BackgroundTex</Name>
       <Importer>TextureImporter</Importer>
@@ -236,6 +229,13 @@
   <ItemGroup>
     <Compile Include="Other\you are dead.png">
       <Name>you are dead</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crosshair\crosshairs2.png">
+      <Name>crosshairs2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
