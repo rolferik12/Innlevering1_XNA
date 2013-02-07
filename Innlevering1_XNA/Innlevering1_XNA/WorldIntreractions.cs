@@ -38,7 +38,7 @@ namespace Innlevering1_XNA
                 }
                 else if (characters[i].Position.X > GameStatus.windowBorder.X) 
                 {
-                    health.Health--;
+                    health.HealthLeft--;
                     characters.RemoveAt(i);
                     i--;
                     continue;

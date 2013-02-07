@@ -151,6 +151,7 @@ namespace Innlevering1_XNA
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.F11)) graphics.ToggleFullScreen();
 
             // TODO: Add your update logic here
 
