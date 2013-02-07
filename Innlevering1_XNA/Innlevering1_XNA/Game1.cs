@@ -322,50 +322,6 @@ namespace Innlevering1_XNA
                 }
 
             }
-
-            //Sets the Y coordinates for the base vector2's.
-
-
-            //      stoneBase.Y = windowHeight - (float)stoneBlock.Height / 0.89f;
-            roofMiddleBase.Y = windowHeight - (float)brownBlock.Height * 3f;
-            roofNorthBase.Y = windowHeight - (float)roofNorth.Height * 3.5f;
-
-            for (int coords = 0; coords < _arrayLenght; coords++)
-            {
-
-                //stoneArray vector2 coordinates
-                //          stoneArray[coords] = new Vector2(stoneBase.X, stoneBase.Y);
-                //          stoneBase.X += xcord;
-
-                //wallArray coordinates
-                wallArray[coords] = new Vector2(wallBase.X, wallBase.Y);
-                wallBase.X += xcord;
-
-                if (wallArray[coords] == wallArray[5])
-                {
-                    wallArray[5].Y = wallBase.Y * 1.09f;
-                }
-
-                //roofSouthArray vector2 coordinates.
-                roofSouthArray[coords] = new Vector2(roofSouthBase.X, roofSouthBase.Y);
-                roofSouthBase.X += xcord;
-
-                //roofMiddleArray vector2 coordinates.
-                roofMiddleArray[coords] = new Vector2(roofMiddleBase.X, roofMiddleBase.Y);
-                roofMiddleBase.X += xcord;
-
-                if (roofMiddleArray[coords] == roofMiddleArray[5])
-                {
-                    roofMiddleArray[5].Y = roofMiddleBase.Y * 0.5f;
-                }
-
-                //roofNorthArray vector2 coordinates
-                roofNorthArray[coords] = new Vector2(roofNorthBase.X, roofNorthBase.Y);
-                roofNorthBase.X += xcord;
-
-
-            }
-
         }
 
         /// <summary>
